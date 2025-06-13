@@ -5,6 +5,7 @@
 You can find both the presentation slides and the recording of our presentation, outlining our approach and the results we achieved:
 
 Slides - [TI-DeepONet_slides_updated](./Slides_TI-DeepONet_updated.pdf)
+
 Recording - [TI-DeepONet_presentation](https://livejohnshopkins-my.sharepoint.com/:v:/g/personal/dnayak2_jh_edu/ETB9TsJdD89CtY1WWHdejHABhEOQ5jRlP23hAPpqRZQuCg?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=yd4L5q)
 
 Link to the paper: [TI-DeepONet](https://arxiv.org/abs/2505.17341)

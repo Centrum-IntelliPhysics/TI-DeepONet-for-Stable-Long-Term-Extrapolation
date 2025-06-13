@@ -11,7 +11,7 @@ Recording - [TI-DeepONet_presentation](https://livejohnshopkins-my.sharepoint.co
 We introduce two frameworks: TI-DeepONet and TI(L)-DeepONet; frameworks that integrate neural operators with adaptive numerical time-stepping techniques to preserve the Markovian structure of dynamical systems while substantially mitigating error propagation in extended temporal forecasting. Our approach reformulates the learning objective from direct state prediction to the approximation of instantaneous time-derivative fields, which are subsequently integrated using established numerical schemes.
 
 ## Proposed Architecture
-![Proposed Architecture][./TI-DON.png]
+![Proposed Architecture](./TI-DON.png)
 
 ## Results
 Extensive evaluation across three canonical PDE systems: (1) 1D Burgers', (2) 1D KdV, and (3) 2D Burgers', demonstrates that TI(L)-DeepONet marginally outperforms TI-DeepONet, with both methodologies significantly reducing relative L2 extrapolation errors, approximately 81% compared to autoregressive implementations and 70% compared to fixed-horizon approaches. Notably, both frameworks maintain prediction stability for temporal domains extending to roughly twice the training interval. The below table summarizes the relative $L_2$ errors obtained in the extrapolation regime for different frameworks employed in this study:

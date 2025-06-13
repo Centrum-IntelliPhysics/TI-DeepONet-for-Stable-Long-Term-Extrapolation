@@ -1,4 +1,11 @@
-# TI-DeepONet-Learnable-Time-Integration-for-Stable-Long-Term-Extrapolation
+## TI-DeepONet-Learnable-Time-Integration-for-Stable-Long-Term-Extrapolation
+
+[Dibyajyoti Nayak](https://scholar.google.com/citations?user=iAdGHHQAAAAJ&hl=en&oi=ao) and [Somdatta Goswami](https://scholar.google.com/citations?hl=en&user=GaKrpSkAAAAJ&view_op=list_works&sortby=pubdate)
+
+You can find both the presentation slides and the recording of our presentation, outlining our approach and the results we achieved:
+
+- [Slides -](./Slides_TI-DeepONet_updated.pdf)
+- [Recording -](./TI-DeepONet_presentation.mov)
 
 Link to the paper: [TI-DeepONet](https://arxiv.org/abs/2505.17341)
 

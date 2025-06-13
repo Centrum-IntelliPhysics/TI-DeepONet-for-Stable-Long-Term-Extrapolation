@@ -14,9 +14,9 @@ We introduce two frameworks: TI-DeepONet and TI(L)-DeepONet; frameworks that int
 ![Proposed Architecture](./TI-DON.png)
 
 ## Results
-Extensive evaluation across three canonical PDE systems: (1) 1D Burgers', (2) 1D KdV, and (3) 2D Burgers', demonstrates that TI(L)-DeepONet marginally outperforms TI-DeepONet, with both methodologies significantly reducing relative L2 extrapolation errors, approximately 81% compared to autoregressive implementations and 70% compared to fixed-horizon approaches. Notably, both frameworks maintain prediction stability for temporal domains extending to roughly twice the training interval. The below table summarizes the relative $L_2$ errors obtained in the extrapolation regime for different frameworks employed in this study:
+Extensive evaluation across three canonical PDE systems: (1) 1D Burgers', (2) 1D KdV, and (3) 2D Burgers', demonstrates that TI(L)-DeepONet marginally outperforms TI-DeepONet, with both methodologies significantly reducing relative $L_2$ extrapolation errors, approximately 81% compared to autoregressive implementations and 70% compared to fixed-horizon approaches. Notably, both frameworks maintain prediction stability for temporal domains extending to roughly twice the training interval. The below table summarizes the relative $L_2$ errors obtained in the extrapolation regime for different frameworks employed in this study:
 
-| Problem        | Method             | t+10Δt          | t+20Δt          | t+40Δt          | T\*              |
+<!-- | Problem        | Method             | t+10Δt          | t+20Δt          | t+40Δt          | T\*              |
 |----------------|--------------------|------------------|------------------|------------------|------------------|
 | **Burgers' (1D)** | TI(L)-DeepONet     | **0.019±0.003** | **0.023±0.003** | **0.036±0.004** | **0.044±0.005** |
 |                | TI-DeepONet AB      | 0.031±0.004     | 0.037±0.005     | 0.057±0.008     | 0.070±0.011     |
@@ -29,7 +29,57 @@ Extensive evaluation across three canonical PDE systems: (1) 1D Burgers', (2) 1D
 | **Burgers' (2D)** | TI(L)-DeepONet     | **0.111±0.002** | **0.121±0.003** | **0.143±0.004** | **0.155±0.004** |
 |                | TI-DeepONet AB      | 0.121±0.002     | 0.133±0.002     | 0.157±0.003     | 0.169±0.003     |
 |                | Full Rollout        | 0.131±0.007     | 0.194±0.014     | 0.357±0.035     | 0.453±0.049     |
-|                | Autoregressive      | 0.503±0.017     | 0.590±0.024     | 0.783±0.052     | 0.894±0.075     |
+|                | Autoregressive      | 0.503±0.017     | 0.590±0.024     | 0.783±0.052     | 0.894±0.075     | -->
+
+
+
+<table>
+  <thead>
+    <tr>
+      <th>Problem</th>
+      <th>Method</th>
+      <th>t+10Δt</th>
+      <th>t+20Δt</th>
+      <th>t+40Δt</th>
+      <th>T*</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="4"><b>Burgers' (1D)</b></td>
+      <td><b>TI(L)-DeepONet</b></td>
+      <td><b>0.019±0.003</b></td>
+      <td><b>0.023±0.003</b></td>
+      <td><b>0.036±0.004</b></td>
+      <td><b>0.044±0.005</b></td>
+    </tr>
+    <tr>
+      <td>TI-DeepONet AB</td>
+      <td>0.031±0.004</td>
+      <td>0.037±0.005</td>
+      <td>0.057±0.008</td>
+      <td>0.070±0.011</td>
+    </tr>
+    <tr>
+      <td>Full Rollout</td>
+      <td>0.043±0.002</td>
+      <td>0.095±0.004</td>
+      <td>0.247±0.028</td>
+      <td>0.336±0.053</td>
+    </tr>
+    <tr>
+      <td>Autoregressive</td>
+      <td>0.710±0.089</td>
+      <td>1.004±0.144</td>
+      <td>1.556±0.206</td>
+      <td>1.768±0.227</td>
+    </tr>
+    <!-- Add more sections as needed -->
+  </tbody>
+</table>
+
+
+
 
 
 
@@ -44,7 +94,6 @@ The code for this project is written in JAX. To install the dependencies and get
 ```bash
 git clone https://github.com/Centrum-IntelliPhysics/TI-DeepONet-for-Stable-Long-Term-Extrapolation.git
 cd TI-DeepONet-for-Stable-Long-Term-Extrapolation
-pip install -r requirements.txt
 ```
 
 

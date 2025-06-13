@@ -74,9 +74,67 @@ Extensive evaluation across three canonical PDE systems: (1) 1D Burgers', (2) 1D
       <td>1.556±0.206</td>
       <td>1.768±0.227</td>
     </tr>
-    <!-- Add more sections as needed -->
+    <tr>
+      <td rowspan="4"><b>KdV (1D)</b></td>
+      <td><b>TI(L)-DeepONet</b></td>
+      <td><b>0.054±0.019</b></td>
+      <td><b>0.065±0.027</b></td>
+      <td><b>0.075±0.031</b></td>
+      <td><b>0.111±0.051</b></td>
+    </tr>
+    <tr>
+      <td>TI-DeepONet AB</td>
+      <td>0.086±0.026</td>
+      <td>0.108±0.034</td>
+      <td>0.129±0.043</td>
+      <td>0.183±0.063</td>
+    </tr>
+    <tr>
+      <td>Full Rollout</td>
+      <td>0.776±0.0004</td>
+      <td>0.716±0.0005</td>
+      <td>0.719±0.0005</td>
+      <td>0.795±0.0007</td>
+    </tr>
+    <tr>
+      <td>Autoregressive</td>
+      <td>0.823±0.073</td>
+      <td>0.886±0.064</td>
+      <td>0.922±0.069</td>
+      <td>0.968±0.083</td>
+    </tr>
+    <tr>
+      <td rowspan="4"><b>Burgers' (2D)</b></td>
+      <td><b>TI(L)-DeepONet</b></td>
+      <td><b>0.111±0.002</b></td>
+      <td><b>0.121±0.003</b></td>
+      <td><b>0.143±0.004</b></td>
+      <td><b>0.155±0.004</b></td>
+    </tr>
+    <tr>
+      <td>TI-DeepONet AB</td>
+      <td>0.121±0.002</td>
+      <td>0.133±0.002</td>
+      <td>0.157±0.003</td>
+      <td>0.169±0.003</td>
+    </tr>
+    <tr>
+      <td>Full Rollout</td>
+      <td>0.131±0.007</td>
+      <td>0.194±0.014</td>
+      <td>0.357±0.035</td>
+      <td>0.453±0.049</td>
+    </tr>
+    <tr>
+      <td>Autoregressive</td>
+      <td>0.503±0.017</td>
+      <td>0.590±0.024</td>
+      <td>0.783±0.052</td>
+      <td>0.894±0.075</td>
+    </tr>
   </tbody>
 </table>
+
 
 
 

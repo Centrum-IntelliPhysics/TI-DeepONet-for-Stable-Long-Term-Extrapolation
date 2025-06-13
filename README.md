@@ -151,9 +151,9 @@ cd TI-DeepONet-for-Stable-Long-Term-Extrapolation
 pip install -r requirements.txt
 ```
 
-
 ## Repository Overview
 
+This repository contains implementations and analyses for the experiments described in the paper. There are three different directions in the codes folder. Each case has 4 different accompanying Jupyter notebbokks that implement the 4 different frameworks: (1) DeepONet Autoregressive, (2) DeepONet Full Rollout, (3) TI-DeepONet, and (4) TI(L)-DeepONet.
 
 ### Citation:
 Our preprint is available on [Arxiv](https://arxiv.org/abs/2505.17341). If you use this code for your research, please cite our paper.

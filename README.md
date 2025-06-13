@@ -137,10 +137,6 @@ Extensive evaluation across three canonical PDE systems: (1) 1D Burgers', (2) 1D
 
 
 
-
-
-
-
 ## Datasets
 
 Link to the datasets used in this work: [TI-DeepONet_datasets](https://livejohnshopkins-my.sharepoint.com/personal/sgoswam4_jh_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fsgoswam4%5Fjh%5Fedu%2FDocuments%2FCentrum%20IntelliPhysics%2FTI%2DDeepoNet&ga=1)
@@ -152,6 +148,7 @@ The code for this project is written in JAX. To install the dependencies and get
 ```bash
 git clone https://github.com/Centrum-IntelliPhysics/TI-DeepONet-for-Stable-Long-Term-Extrapolation.git
 cd TI-DeepONet-for-Stable-Long-Term-Extrapolation
+pip install -r requirements.txt
 ```
 
 

@@ -6,7 +6,7 @@ You can find both the presentation slides and the recording of our presentation,
 
 Slides - [TI-DeepONet_slides_updated](./Slides_TI-DeepONet_updated.pdf)
 
-Recording - [TI-DeepONet_presentation](https://livejohnshopkins-my.sharepoint.com/:v:/g/personal/dnayak2_jh_edu/ETB9TsJdD89CtY1WWHdejHABhEOQ5jRlP23hAPpqRZQuCg?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=yd4L5q)
+Recording - [TI-DeepONet_presentation](https://www.youtube.com/watch?v=bLLbKAq4RBA&t=4002s)
 
 We introduce two frameworks: TI-DeepONet and TI(L)-DeepONet; frameworks that integrate neural operators with adaptive numerical time-stepping techniques to preserve the Markovian structure of dynamical systems while substantially mitigating error propagation in extended temporal forecasting. Our approach reformulates the learning objective from direct state prediction to the approximation of instantaneous time-derivative fields, which are subsequently integrated using established numerical schemes.
 

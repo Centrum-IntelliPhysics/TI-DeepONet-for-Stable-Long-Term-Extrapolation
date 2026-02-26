@@ -139,7 +139,7 @@ Extensive evaluation across three canonical PDE systems: (1) 1D Burgers', (2) 1D
 
 ## Datasets
 
-Link to the datasets used in this work: [TI-DeepONet_datasets](https://livejohnshopkins-my.sharepoint.com/personal/sgoswam4_jh_edu/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fsgoswam4%5Fjh%5Fedu%2FDocuments%2FCentrum%20IntelliPhysics%2FTI%2DDeepoNet&ga=1)
+Link to the datasets used in this work: [TI-DeepONet_datasets](https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/sgoswam4_jh_edu/IgDaEmuDvTQ6RahT2oBinhChAdCmLGsdx9sucZaCFe2cLVg?e=qlg8MA)
 
 ## Installation
 

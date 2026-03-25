@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+title: "TI-DeepONet for Stable Long-Term Extrapolation"
+message: "If you use this code, please cite our paper and/or this repository."
+type: software
+
+authors:
+  - given-names: "Dibyajyoti"
+    family-names: "Nayak"
+    affiliation: "Johns Hopkins University"
+
+repository-code: "https://github.com/Centrum-IntelliPhysics/TI-DeepONet-for-Stable-Long-Term-Extrapolation"
+
+keywords:
+  - scientific machine learning
+  - neural operators
+  - DeepONet
+  - time integration
+  - PDEs
+  - numerical methods
+
+license: MIT
+
+version: 1.0
+date-released: 2026-03-25
+
+preferred-citation:
+  type: article
+  title: "TI-DeepONet for Stable Long-Term Extrapolation"
+  authors:
+    - given-names: "Dibyajyoti"
+      family-names: "Nayak"
+  year: 2025
+  journal: "arXiv"
+  url: "https://arxiv.org/abs/2505.17341"

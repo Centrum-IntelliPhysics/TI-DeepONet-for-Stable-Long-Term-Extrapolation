@@ -7,8 +7,6 @@
 
 [Dibyajyoti Nayak](https://scholar.google.com/citations?user=iAdGHHQAAAAJ&hl=en&oi=ao) and [Somdatta Goswami](https://scholar.google.com/citations?hl=en&user=GaKrpSkAAAAJ&view_op=list_works&sortby=pubdate)
 
----
-
 We introduce **TI-DeepONet** and **TI(L)-DeepONet**: neural operator frameworks that integrate adaptive numerical time-stepping techniques to preserve the Markovian structure of dynamical systems while substantially mitigating error propagation in extended temporal forecasting. Our approach reformulates the learning objective from direct state prediction to the approximation of instantaneous time-derivative fields, which are subsequently integrated using established numerical schemes.
 
 ## Proposed Architecture
@@ -23,8 +21,6 @@ We introduce **TI-DeepONet** and **TI(L)-DeepONet**: neural operator frameworks 
 - **Flexible integration**: Compatible with adaptive numerical time-stepping schemes; supports higher-precision integrators at inference than those used during training
 - **Learnable integration**: TI(L)-DeepONet incorporates learnable coefficients for multi-stage numerical integration, adapting to solution-specific variations
 
----
-
 ## Paper
 
 Our work has been published in **Computer Methods in Applied Mechanics and Engineering**:
@@ -34,8 +30,6 @@ Our work has been published in **Computer Methods in Applied Mechanics and Engin
 **Official Article Link**: [ScienceDirect](https://www.sciencedirect.com/science/article/pii/S0045782526002331)
 
 The preprint is also available on arXiv: [2505.17341](https://arxiv.org/abs/2505.17341)
-
----
 
 ## Results
 
@@ -143,8 +137,6 @@ Extensive evaluation across six canonical PDE systems spanning diverse, high-dim
   </tbody>
 </table>
 
----
-
 ## Installation
 
 The code for this project is written in **JAX**. To install the dependencies and get started:
@@ -155,14 +147,10 @@ cd TI-DeepONet-for-Stable-Long-Term-Extrapolation
 pip install -r requirements.txt
 ```
 
----
-
 ## Datasets
 
-The datasets used in this work are available here:  
-📁 [TI-DeepONet Datasets](https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/sgoswam4_jh_edu/IgDaEmuDvTQ6RahT2oBinhChAdCmLGsdx9sucZaCFe2cLVg?e=qlg8MA)
+The datasets used in this work are available here:  📁 [TI-DeepONet Datasets](https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/sgoswam4_jh_edu/IgDaEmuDvTQ6RahT2oBinhChAdCmLGsdx9sucZaCFe2cLVg?e=qlg8MA)
 
----
 
 ## Repository Overview
 
@@ -172,8 +160,8 @@ This repository contains implementations for the experiments described in the pa
 |-----------|-------------|
 | **DeepONet Autoregressive** | Standard autoregressive baseline with sequential predictions |
 | **DeepONet Full Rollout** | Fixed-horizon rollout approach predicting complete spatiotemporal solutions |
-| **TI-DeepONet** | Time-integration with Adams-Bashforth scheme |
-| **TI(L)-DeepONet** | Time-integration with learnable coefficients for multi-stage integration |
+| **TI-DeepONet** | Time-integration with classical Adams-Bashforth/Runge-Kutta schemes |
+| **TI(L)-DeepONet** | Time-integration with adaptive RK4 having learnable slope coefficients |
 
 ### Directory Structure
 
@@ -196,14 +184,10 @@ TI-DeepONet-for-Stable-Long-Term-Extrapolation/
 └── README.md
 ```
 
----
-
 ## Presentation
 
 📊 **Slides**: [TI-DeepONet_slides_updated](./Slides_TI-DeepONet_updated.pdf)  
 🎥 **Recording**: [YouTube Presentation](https://www.youtube.com/watch?v=bLLbKAq4RBA&t=4002s)
-
----
 
 ## Citation
 
@@ -224,15 +208,10 @@ If you use this code for your research, please cite our paper:
 }
 ```
 
----
-
 ## Contributing
 
 We welcome contributions! Please feel free to open issues or submit pull requests.
 
----
-
 ## License
 
 This project is licensed under the Apache 2.0 License - see the [LICENSE](LICENSE) file for details.
-```

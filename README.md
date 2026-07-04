@@ -23,7 +23,7 @@ We introduce **TI-DeepONet** and **TI(L)-DeepONet**: neural operator frameworks 
 
 ## Paper
 
-Our work has been published in **Computer Methods in Applied Mechanics and Engineering**:
+Our work has been published in **Computer Methods in Applied Mechanics and Engineering**.
 
 **Title**: TI-DeepONet: Learnable time integration for stable long-term extrapolation  
 **DOI**: [10.1016/j.cma.2026.118960](https://doi.org/10.1016/j.cma.2026.118960)  
@@ -154,14 +154,16 @@ The datasets used in this work are available here:  📁 [TI-DeepONet Datasets](
 
 ## Repository Overview
 
-This repository contains implementations for the experiments described in the paper. The `codes` folder contains three different PDE cases, each with 4 Jupyter notebooks implementing the different frameworks:
+This repository contains implementations for the experiments described in the paper. The `codes` folder contains six different PDE cases, each with both python scripts and Jupyter notebooks implementing the different frameworks:
 
 | Framework | Description |
 |-----------|-------------|
-| **DeepONet Autoregressive** | Standard autoregressive baseline with sequential predictions |
-| **DeepONet Full Rollout** | Fixed-horizon rollout approach predicting complete spatiotemporal solutions |
-| **TI-DeepONet** | Time-integration with classical Adams-Bashforth/Runge-Kutta schemes |
-| **TI(L)-DeepONet** | Time-integration with adaptive RK4 having learnable slope coefficients |
+| **DeepONet Autoregressive** | Standard DeepONet autoregressive baseline with sequential predictions between two successive states |
+| **DeepONet Full Rollout** | DeepONet Full rollout that predicts complete spatiotemporal solutions from an initial condition |
+| **TI-DeepONet** | DeepONet predicts instantaneous time-derivative; time-integration with classical Adams-Bashforth/Runge-Kutta schemes |
+| **TI(L)-DeepONet** | DeepONet predicts instantaneous time-derivative; time-integration with adaptive RK4 having learnable slope coefficients |
+| **FNO Autoregressive** | Standard FNO autoregressive baseline with sequential predictions between two successive states |
+| **FNO Full Rollout** | FNO Full rollout that predicts complete spatiotemporal solutions from an initial condition |
 
 ### Directory Structure
 
@@ -174,9 +176,15 @@ TI-DeepONet-for-Stable-Long-Term-Extrapolation/
 │   │   ├── TI_DeepONet.ipynb
 │   │   └── TI_L_DeepONet.ipynb
 │   ├── 1D_KdV/
-│   │   └── ... (same structure)
-│   └── 2D_Burgers/
-│       └── ... (same structure)
+│   │   └── ... (similar structure)
+│   ├── 1D_KS/
+│   │   └── ... (similar structure)
+│   └── 2D_Burgers_nu_1e-4/
+│       └── ... (similar structure)
+│   ├── 2D_RotationAdvection/
+│   │   └── ... (similar structure)
+│   ├── 3D_Heat/
+│   │   └── ... (similar structure)
 ├── Slides_TI-DeepONet_updated.pdf
 ├── TI-DON.png
 ├── requirements.txt

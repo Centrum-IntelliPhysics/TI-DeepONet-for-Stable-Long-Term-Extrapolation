@@ -73,9 +73,6 @@ class FNOBlock1d(nn.Module):
 
     @nn.compact
     def __call__(self, x):
-        """
-        x: jnp.ndarray with shape (batch_size, in_channels, spatial_points)
-        """
         spectral_out = SpectralConv1d(
             in_channels=self.in_channels,
             out_channels=self.out_channels,
@@ -104,9 +101,6 @@ class FNO1d(nn.Module):
 
     @nn.compact
     def __call__(self, x):
-        """
-        x: jnp.ndarray of shape (batch_size, in_channels, spatial_points)
-        """
         x_perm = jnp.transpose(x, axes=(0, 2, 1))    #(bs, spatial_points, nchannels)
         
         # Lift input to higher dimension
@@ -152,9 +146,13 @@ class SpectralConv2d(nn.Module):
     def setup(self):
         scale = 1.0 / (self.in_channels * self.out_channels)
         
-        self.weights1 = self.param('weights1', lambda rng: scale * jax.random.normal(rng, (self.in_channels, self.out_channels, self.modes1, self.modes2, 2)))
+        self.weights1 = self.param(
+            'weights1', lambda rng: scale * jax.random.normal(rng, 
+                            (self.in_channels, self.out_channels, self.modes1, self.modes2, 2)))
         
-        self.weights2 = self.param('weights2', lambda rng: scale * jax.random.normal(rng, (self.in_channels, self.out_channels, self.modes1, self.modes2, 2)))
+        self.weights2 = self.param(
+            'weights2', lambda rng: scale * jax.random.normal(rng, 
+                            (self.in_channels, self.out_channels, self.modes1, self.modes2, 2)))
 
         
     def compl_mul2d(self, a, b):
@@ -222,4 +220,137 @@ class FNO2d(nn.Module):
         # Projection: map back to output space
         x = nn.Conv(features=self.out_channels, kernel_size=(1, 1))(x)
         
+        return x
+    
+
+class SpectralConv3d(nn.Module):
+    in_channels: int
+    out_channels: int
+    modes1: int
+    modes2: int
+    modes3: int
+
+    def setup(self):
+        scale = 1.0 / (self.in_channels * self.out_channels)
+        self.weights1 = self.param(
+            'weights1',
+            lambda rng: scale * jax.random.normal(
+                rng,
+                (self.in_channels, self.out_channels, self.modes1, self.modes2, self.modes3, 2)
+            )
+        )
+        self.weights2 = self.param(
+            'weights2',
+            lambda rng: scale * jax.random.normal(
+                rng,
+                (self.in_channels, self.out_channels, self.modes1, self.modes2, self.modes3, 2)
+            )
+        )
+        self.weights3 = self.param(
+            'weights3',
+            lambda rng: scale * jax.random.normal(
+                rng,
+                (self.in_channels, self.out_channels, self.modes1, self.modes2, self.modes3, 2)
+            )
+        )
+        self.weights4 = self.param(
+            'weights4',
+            lambda rng: scale * jax.random.normal(
+                rng,
+                (self.in_channels, self.out_channels, self.modes1, self.modes2, self.modes3, 2)
+            )
+        )
+
+    def compl_mul3d(self, a, b):
+        # Complex multiplication: (a_real + i a_imag) * (b_real + i b_imag)
+        return jnp.stack([
+            jnp.einsum('bixyz,ioxyz->boxyz', a[...,0], b[...,0]) -
+            jnp.einsum('bixyz,ioxyz->boxyz', a[...,1], b[...,1]),
+            jnp.einsum('bixyz,ioxyz->boxyz', a[...,1], b[...,0]) +
+            jnp.einsum('bixyz,ioxyz->boxyz', a[...,0], b[...,1])
+        ], axis=-1)
+
+    def __call__(self, x):
+        batchsize = x.shape[0]
+
+        # Forward FFT
+        x_ft = jnp.fft.rfftn(x, axes=(-3, -2, -1), norm="ortho")
+        x_ft = jnp.stack([x_ft.real, x_ft.imag], axis=-1)   # (..., 2)
+
+        # Output tensor in Fourier space
+        out_ft = jnp.zeros(
+            (batchsize, self.out_channels, x.shape[-3], x.shape[-2], x.shape[-1] // 2 + 1, 2),
+            dtype=x.dtype
+        )
+
+        # Apply weights to Fourier modes
+        
+        #(positive k1 modes, positive k2 modes) - 1st quadrant in k1 (X-axis) and k2 (Y-axis) plane
+        out_ft = out_ft.at[:, :, :self.modes1, :self.modes2, :self.modes3].set(
+            self.compl_mul3d(x_ft[:, :, :self.modes1, :self.modes2, :self.modes3], self.weights1)
+        )
+
+        #(negative k1 modes, positive k2 modes) - 2nd quadrant in k1 (X-axis) and k2 (Y-axis) plane
+        out_ft = out_ft.at[:, :, -self.modes1:, :self.modes2, :self.modes3].set(
+            self.compl_mul3d(x_ft[:, :, -self.modes1:, :self.modes2, :self.modes3], self.weights2)
+        )
+
+        #(positive k1 modes, negative k2 modes) - 4th quadrant in k1 (X-axis) and k2 (Y-axis) plane
+        out_ft = out_ft.at[:, :, :self.modes1, -self.modes2:, :self.modes3].set(
+            self.compl_mul3d(x_ft[:, :, :self.modes1, -self.modes2:, :self.modes3], self.weights3)
+        )
+
+        #(negative k1 modes, negative k2 modes) - 3rd quadrant in k1 (X-axis) and k2 (Y-axis) plane
+        out_ft = out_ft.at[:, :, -self.modes1:, -self.modes2:, :self.modes3].set(
+            self.compl_mul3d(x_ft[:, :, -self.modes1:, -self.modes2:, :self.modes3], self.weights4)
+        )
+
+        # Back to physical space
+        x = jnp.fft.irfftn(out_ft[...,0] + 1j*out_ft[...,1],
+                           s=(x.shape[-3], x.shape[-2], x.shape[-1]),
+                           norm="ortho")
+        return x    
+
+class FNO3d(nn.Module):
+    in_channels: int
+    out_channels: int
+    modes1: int
+    modes2: int
+    modes3: int
+    width: int
+    n_blocks: int
+    activation: Callable
+
+    @nn.compact
+    def __call__(self, x):
+        # x: (B, D, H, W, C)
+
+        # Lifting: project input to higher dimension
+        x = nn.Conv(features=self.width, kernel_size=(1, 1, 1))(x)
+
+        # Fourier layers with residual connections
+        for i in range(self.n_blocks):
+            # Permute to (B, C, D, H, W) for spectral conv
+            x_permuted = jnp.transpose(x, (0, 4, 1, 2, 3))
+
+            # Spectral convolution branch
+            x1 = SpectralConv3d(
+                in_channels=self.width,
+                out_channels=self.width,
+                modes1=self.modes1,
+                modes2=self.modes2,
+                modes3=self.modes3
+            )(x_permuted)
+            x1 = jnp.transpose(x1, (0, 2, 3, 4, 1))  # (B, D, H, W, C)
+
+            # Skip connection branch (local convolution)
+            x2 = nn.Conv(features=self.width, kernel_size=(1, 1, 1))(x)
+
+            # Combine branches
+            x = x1 + x2
+            x = self.activation(x)
+
+        # Projection: map back to output space
+        x = nn.Conv(features=self.out_channels, kernel_size=(1, 1, 1))(x)
+
         return x
